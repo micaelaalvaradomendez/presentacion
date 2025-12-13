@@ -1,0 +1,508 @@
+:root {
+    --bg-color: #110a20;
+    --accent-color: #ff5c2a;
+    /* Rosa Neón */
+    --secondary-color: #05a0e8;
+    /* Cyan Neón */
+    --text-color: #e0e0e0;
+
+    /* Dimensiones Default (Desktop) */
+    --sphere-size: 280px;
+    --orbit-radius: 550px;
+}
+
+/* --- RESPONSIVE VARIABLES --- */
+@media (max-width: 1024px) {
+    :root {
+        --sphere-size: 220px;
+        --orbit-radius: 400px;
+    }
+}
+
+@media (max-width: 768px) {
+    :root {
+        --sphere-size: 180px;
+        --orbit-radius: 300px;
+    }
+
+    body {
+        font-size: 14px;
+        /* Base font size reduction */
+    }
+}
+
+@media (max-width: 480px) {
+    :root {
+        --sphere-size: 140px;
+        --orbit-radius: 170px;
+        /* Much closer for mobile portrait */
+    }
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scroll bars */
+    overscroll-behavior: none; /* Prevent pull-to-refresh */
+    touch-action: none; /* Prevent default touch actions (pan/zoom) */
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image: radial-gradient(circle at 50% 50%, #1f1a2e 0%, #000 100%);
+    color: var(--text-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+    /* Profundidad 3D */
+}
+
+/* --- FONDO DE PARTÍCULAS --- */
+#particleCanvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+/* --- UNIVERSO 3D --- */
+.universe {
+    position: relative;
+    transform-style: preserve-3d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.8s;
+}
+
+/* Estado "Alejado" cuando se abre una carta o el núcleo */
+.universe.receded {
+    transform: scale(0.6) translateZ(-400px) translateY(-50px);
+    opacity: 0.3;
+    pointer-events: none;
+    filter: blur(2px);
+}
+
+@media (max-width: 768px) {
+    .universe.receded {
+        transform: scale(0.5) translateZ(-200px) translateY(-20px);
+    }
+}
+
+/* --- NÚCLEO (PROBLEMA) --- */
+.center-object {
+    width: var(--sphere-size);
+    height: var(--sphere-size);
+    background: radial-gradient(circle at 30% 30%, #402a32, #150505);
+    border: 2px solid #542e23;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 100;
+    box-shadow:
+        0 0 60px rgba(255, 145, 42, 0.3),
+        inset 10px 10px 30px rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: all 0.5s ease;
+}
+
+.center-object:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 100px rgba(255, 145, 42, 0.6);
+    border-color: var(--accent-color);
+}
+
+.sphere-title {
+    font-size: 3rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    color: var(--accent-color);
+    text-shadow: 0 0 20px rgba(255, 145, 42, 0.8);
+    margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    .sphere-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .sphere-title {
+        font-size: 1.5rem;
+    }
+}
+
+.sphere-subtitle {
+    font-size: 0.9rem;
+    color: #ccc;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+}
+
+/* --- ANILLO DE ORBITA --- */
+.orbit-ring {
+    position: absolute;
+    width: 0;
+    height: 0;
+    transform-style: preserve-3d;
+    /* La rotación se controla vía JS */
+}
+
+/* --- TARJETAS ORBITALES --- */
+.orbit-card {
+    position: absolute;
+    width: 140px;
+    height: 160px;
+    left: -70px;
+    /* Centrado (-width/2) */
+    top: -80px;
+    /* Centrado (-height/2) */
+
+    /* Estilo Glassmorphism */
+    background: rgba(20, 20, 30, 0.6);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+
+    cursor: pointer;
+    transform-style: preserve-3d;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    /* La transformación de posición se hace en JS */
+}
+
+@media (max-width: 768px) {
+    .orbit-card {
+        width: 100px;
+        height: 120px;
+        left: -50px;
+        top: -60px;
+    }
+}
+
+.orbit-card:hover {
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 30px rgba(5, 217, 232, 0.3);
+    background: rgba(20, 20, 30, 0.9);
+    z-index: 200 !important;
+    /* Traer al frente en hover */
+}
+
+.card-icon {
+    font-size: 3.5rem;
+    filter: drop-shadow(0 0 10px rgba(5, 217, 232, 0.5));
+    transition: transform 0.3s;
+}
+
+@media (max-width: 768px) {
+    .card-icon {
+        font-size: 2.5rem;
+    }
+}
+
+.orbit-card:hover .card-icon {
+    transform: scale(1.1);
+}
+
+.card-label {
+    font-size: 0.9rem;
+    color: #fff;
+    font-weight: 600;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+    padding: 0 10px;
+}
+
+/* --- OVERLAYS (Expandidos) --- */
+.overlay-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2000;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Tarjeta Expandida (Clon) */
+.expanded-card {
+    position: absolute;
+    background: rgba(10, 12, 20, 0.95);
+    border: 2px solid var(--secondary-color);
+    box-shadow: 0 0 100px rgba(5, 217, 232, 0.2);
+    backdrop-filter: blur(20px);
+    border-radius: 20px;
+    overflow: hidden;
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+    pointer-events: none;
+
+    /* Estado inicial (se sobrescribe por JS al clonar) */
+    width: 0;
+    height: 0;
+    top: 50%;
+    left: 50%;
+}
+
+.expanded-card.active {
+    width: 85vw !important;
+    height: 85vh !important;
+    top: 7.5vh !important;
+    left: 7.5vw !important;
+    opacity: 1;
+    pointer-events: all;
+    transform: none !important;
+}
+
+/* Contenido dentro de la expandida */
+.expanded-content {
+    padding: 50px;
+    height: 100%;
+    overflow-y: auto;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.5s 0.3s;
+    /* Delay para que termine de abrirse */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.expanded-card.active .expanded-content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.expanded-content h2 {
+    font-size: 3rem;
+    color: var(--secondary-color);
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(5, 217, 232, 0.4);
+    text-align: center;
+    border-bottom: 1px solid rgba(5, 217, 232, 0.3);
+    padding-bottom: 15px;
+    width: 100%;
+}
+
+.expanded-content .body-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    max-width: 900px;
+    text-align: left;
+    width: 100%;
+}
+
+.expanded-content ul {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+
+.expanded-content li {
+    margin-bottom: 15px;
+    list-style-type: none;
+    position: relative;
+    padding-left: 25px;
+}
+
+.expanded-content li:before {
+    content: "➤";
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+.expanded-img-container {
+    margin-top: 20px;
+    max-width: 80%;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid #444;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+.expanded-img-container img {
+    width: 100%;
+    display: block;
+}
+
+.close-btn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    font-size: 3rem;
+    color: white;
+    cursor: pointer;
+    z-index: 2005;
+    /* Más alto que el overlay z-index 2000 */
+    transition: 0.3s;
+    line-height: 0.8;
+}
+
+.close-btn:hover {
+    color: var(--accent-color);
+    transform: rotate(90deg);
+}
+
+/* Estilo para el modo Hero (Núcleo) - Color Rojo */
+.expanded-card.hero-mode {
+    border-color: var(--accent-color);
+    background: rgba(20, 5, 10, 0.96);
+}
+
+.expanded-card.hero-mode h2 {
+    color: var(--accent-color);
+    text-shadow: 0 0 20px rgba(255, 120, 42, 0.4);
+    border-color: rgba(255, 120, 42, 0.3);
+}
+
+/* --- HERO SUBTITLE --- */
+.hero-subtitle {
+    font-size: 1.3rem;
+    text-align: center;
+    color: #ccc;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+/* --- TABS CONTAINER --- */
+.tabs-container {
+    width: 100%;
+    max-width: 900px;
+}
+
+.tabs-nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+    border-bottom: 2px solid rgba(255, 120, 42, 0.2);
+    padding-bottom: 10px;
+}
+
+.tab-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 120, 42, 0.3);
+    border-radius: 10px 10px 0 0;
+    padding: 12px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #ccc;
+    font-size: 1rem;
+    font-weight: 500;
+    flex: 1;
+    justify-content: center;
+}
+
+.tab-btn:hover {
+    background: rgba(255, 120, 42, 0.1);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+}
+
+.tab-btn.active {
+    background: var(--accent-color);
+    border-color: var(--accent-color);
+    color: white;
+    box-shadow: 0 0 20px rgba(255, 120, 42, 0.4);
+}
+
+.tab-icon {
+    font-size: 1.5rem;
+}
+
+.tab-title {
+    font-weight: 600;
+}
+
+.tabs-body {
+    width: 100%;
+}
+
+.tab-content {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.tab-content p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 15px;
+}
+
+.tab-content ul {
+    margin: 20px 0;
+    padding-left: 20px;
+}
+
+.tab-content li {
+    margin-bottom: 15px;
+    list-style-type: none;
+    position: relative;
+    padding-left: 25px;
+    font-size: 1.1rem;
+}
+
+.tab-content li:before {
+    content: "➤";
+    position: absolute;
+    left: 0;
+    color: var(--accent-color);
+}
+
+/* Instrucciones Footer */
+.footer-nav {
+    position: fixed;
+    bottom: 30px;
+    width: 100%;
+    text-align: center;
+    opacity: 0.6;
+    pointer-events: none;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+}
