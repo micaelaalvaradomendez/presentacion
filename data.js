@@ -246,14 +246,16 @@ const heroData = {
             title: "La Solución",
             icon: "🌐",
             content: `
-                <p>Desarrollamos una plataforma web integral:</p>
+                <p>Transformación de procesos manuales a un flujo de datos auditable:</p>
                 <ul>
-                    <li><strong>Centralizada:</strong> Una única fuente de verdad.</li>
-                    <li><strong>Accesible:</strong> Desde PC, Tablets y Móviles.</li>
-                    <li><strong>Transparente:</strong> El agente ve sus horas en tiempo real.</li>
-                    <li><strong>Segura:</strong> Auditoría completa de cada movimiento.</li>
+                    <li><strong>1. Integridad Financiera:</strong> Automatización del cálculo de Plus (40%/20%) según reglas de negocio.</li>
+                    <li><strong>2. Anti-Fraude:</strong> Verificación cruzada de identidad (DNI + IP + Sesión) en tiempo real.</li>
+                    <li><strong>3. Cadena de Mando:</strong> Workflow de aprobación estricto (Planificación vs. Validación).</li>
+                    <li><strong>4. Realidad Operativa:</strong> Gestión digital de Compensaciones (Horas Extra) e Incidencias.</li>
+                    <li><strong>5. Democratización:</strong> Dashboard 24/7 para el agente (Autogestión).</li>
                 </ul>
             `
         }
     ]
 };
+
