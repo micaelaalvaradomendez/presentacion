@@ -7,29 +7,52 @@ const slides = [
         id: 4,
         title: "Metodología",
         icon: "📋",
-        content: `
-            <p>Adoptamos un enfoque Híbrido:</p>
-            <ul>
-                <li><strong>Fase 1 (Cascada):</strong> Análisis y Diseño estricto (Agosto-Septiembre).</li>
-                <li><strong>Fase 2 (Ágil/Scrum):</strong> Construcción iterativa e incremental.</li>
-            </ul>
-            <p>Organización mediante Tablero Kanban (Trello) y Git Flow.</p>
-        `
-    },
-    {
-        id: 5,
-        title: "Sprints",
-        icon: "🏃‍♂️",
-        content: `
-            <p>Evolución del desarrollo en 4 etapas:</p>
-            <ul>
-                <li><strong>Sprint 1:</strong> Cimientos, Docker y Autenticación.</li>
-                <li><strong>Sprint 2:</strong> Núcleo (Agentes), refactorización a "Database First".</li>
-                <li><strong>Sprint 3:</strong> Lógica de Negocio (Guardias, Licencias) y Compensaciones.</li>
-                <li><strong>Sprint 4:</strong> Seguridad (RBAC), Anti-Fraude y Despliegue Final.</li>
-            </ul>
-        `
-    },
+        tabs: [
+        {
+            id: "estrategia",
+            title: "Estrategia Híbrida",
+            icon: "uD83D\uDCCA", // Icono de Gráfico
+            content: `
+                <p>Equilibrio entre rigor académico y flexibilidad de desarrollo.</p>
+                <ul>
+                    <li><strong>Fase 1 (Cascada):</strong> Ingeniería de Requerimientos y Diseño Arquitectónico (Agosto-Septiembre). Enfoque en "pensar antes de codificar".</li>
+                    <li><strong>Fase 2 (Ágil):</strong> Desarrollo iterativo e incremental (Octubre-Diciembre). Adaptación a cambios mediante Sprints.</li>
+                    <li><strong>Validación Continua:</strong> Feedback constante con Protección Civil para ajustar el producto a la realidad operativa.</li>
+                </ul>
+            `
+        },
+        {
+            id: "evolucion",
+            title: "Evolución (Sprints)",
+            icon: "uD83D\uDD04", // Icono de ciclo/repetición
+            content: `
+                <p>Cronología de maduración técnica y funcional:</p>
+                <ul>
+                    <li><strong>Sprint 1 & 2 (Cimientos):</strong> Infraestructura Docker, Seguridad Base y cambio crítico a <em>Database First</em>.</li>
+                    <li><strong>Sprint 3 (Negocio):</strong> Desarrollo del núcleo (Guardias/Asistencia). Inclusión del módulo no planeado de <em>Compensaciones</em> (Adaptabilidad).</li>
+                    <li><strong>Sprint 4 (Hardening):</strong> Implementación de RBAC estricto, módulo de <em>Incidencias</em>, módulo de <em>Reportes</em>, módulo de <em>Notificaciones</em> y despliegue productivo en Railway.</li>
+                </ul>
+            `
+        },
+        {
+            id: "dinamica",
+            title: "Dinámica y Herramientas",
+            icon: "uD83D\uDEE0\uFE0F", // Icono de herramientas
+            content: `
+                <p>Organización de equipo de alto rendimiento:</p>
+                <ul>
+                    <li><strong>Vertical Slicing:</strong> Desarrollo "Full Stack" por funcionalidad (End-to-End) para evitar bloqueos.</li>
+                    <li><strong>Stack de Gestión:</strong> Trello (Kanban), GitHub (CI/CD) y Figma (Prototipado).</li>
+                    <li><strong>IA Integrada:</strong> Uso de GitHub Copilot como agente de auditoría de código y documentación.</li>
+                    <li><strong>Diagrams as Code:</strong> Uso de PlantUML para mantener la documentación técnica viva y versionada.</li>
+                </ul>
+                <div style="margin-top:30px; text-align:center;">
+                    <img src="trello.png" alt="trello" style="width:180px; height:180px; border:3px solid var(--secondary-color); border-radius:10px; box-shadow:0 0 20px rgba(77, 238, 234, 0.3);">
+                </div>
+            `
+        }
+    ]
+},
     {
         id: 6,
         title: "Tecnología",
