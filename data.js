@@ -184,7 +184,7 @@ const slides = [
         title: "Escalabilidad",
         icon: "🌍",
         content: `
-            <p>GIGA trasciende a Protección Civil. Su arquitectura abstracta permite gestion de turnos en:</p>
+            <p>GIGA trasciende a Protección Civil. Su arquitectura abstracta permite gestión de turnos en:</p>
             <ul>
                 <li><strong>Salud:</strong> Guardias médicas y cronogramas hospitalarios.</li>
                 <li><strong>Industria:</strong> Turnos rotativos en fábricas 24/7.</li>
