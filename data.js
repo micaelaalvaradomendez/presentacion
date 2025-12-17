@@ -8,50 +8,58 @@ const slides = [
         title: "Metodología",
         icon: "📋",
         tabs: [
-        {
-            id: "estrategia",
-            title: "Estrategia Híbrida",
-            icon: "📊", // Icono de Gráfico
-            content: `
-                <p>Equilibrio entre rigor académico y flexibilidad de desarrollo.</p>
-                <ul>
-                    <li><strong>Fase 1 (Cascada):</strong> Ingeniería de Requerimientos y Diseño Arquitectónico (Agosto-Septiembre). Enfoque en "pensar antes de codificar".</li>
-                    <li><strong>Fase 2 (Ágil):</strong> Desarrollo iterativo e incremental (Octubre-Diciembre). Adaptación a cambios mediante Sprints.</li>
-                    <li><strong>Validación Continua:</strong> Feedback constante con Protección Civil para ajustar el producto a la realidad operativa.</li>
-                </ul>
-            `
-        },
-        {
-            id: "evolucion",
-            title: "Evolución (Sprints)",
-            icon: "🔄", // Icono de ciclo/repetición
-            content: `
-                <p>Cronología de maduración técnica y funcional:</p>
-                <ul>
-                    <li><strong>Sprint 1 & 2 (Cimientos):</strong> Infraestructura Docker, Seguridad Base y cambio crítico a <em>Database First</em>.</li>
-                    <li><strong>Sprint 3 (Negocio):</strong> Desarrollo del núcleo (Guardias/Asistencia). Inclusión del módulo no planeado de <em>Compensaciones</em> (Adaptabilidad).</li>
-                    <li><strong>Sprint 4 (Hardening):</strong> Implementación de RBAC estricto, módulo de <em>Incidencias</em>, módulo de <em>Reportes</em>, módulo de <em>Notificaciones</em> y despliegue productivo en Railway.</li>
-                </ul>
-            `
-        },
-        {
-            id: "dinamica",
-            title: "Dinámica y Herramientas",
-            icon: "🛠️", // Icono de herramientas
-            content: `
-                <p>Organización de equipo de alto rendimiento:</p>
-                <ul>
-                    <li><strong>Vertical Slicing:</strong> Desarrollo "Full Stack" por funcionalidad (End-to-End) para evitar bloqueos.</li>
-                    <li><strong>Stack de Gestión:</strong> Trello (Kanban), GitHub (CI/CD) y Figma (Prototipado).</li>
-                    <li><strong>IA Integrada:</strong> Uso de GitHub Copilot como agente de auditoría de código y documentación.</li>
-                    <li><strong>Diagrams as Code:</strong> Uso de PlantUML para mantener la documentación técnica viva y versionada.</li>
-                </ul>
-                <div style="margin-top:30px; text-align:center;">
-                    <img src="trello.png" alt="trello" style="width:180px; height:180px; border:3px solid var(--secondary-color); border-radius:10px; box-shadow:0 0 20px rgba(77, 238, 234, 0.3);">
-                </div>
-            `
-        }
-    ]
+            {
+                id: "estrategia",
+                title: "Estrategia Híbrida",
+                icon: "📊",
+                content: `
+                    <p><strong>Enfoque de trabajo:</strong> "Vertical Slicing" con modalidad Full-Stack.</p>
+                    <ul>
+                        <li><strong>Corte Vertical:</strong> Cada integrante implementa funcionalidades completas (DB → backend → frontend), evitando dependencias rígidas entre capas.</li>
+                        <li><strong>Colaboración y mentoría:</strong> Revisiones de código y soporte interno para nivelar habilidades del equipo y compartir conocimientos técnicos (DB, Docker, seguridad, etc.).</li>
+                        <li><strong>Autonomía:</strong> Se reducen cuellos de botella: los desarrolladores avanzan de forma independiente dominando el flujo completo de la funcionalidad.</li>
+                    </ul>
+                `
+            },
+            {
+                id: "evolucion",
+                title: "Evolución (Sprints)",
+                icon: "🔄",
+                content: `
+                    <p><strong>Fases y cronología:</strong></p>
+                    <ul>
+                        <li><strong>Ingeniería de Requerimientos (Agosto-Septiembre):</strong> Relevamiento con el cliente y definición de casos de uso.</li>
+                        <li><strong>Diseño de Arquitectura y Datos:</strong> Infraestructura en Docker y estrategia <em>Database First</em> para asegurar integridad del modelo.</li>
+                        <li><strong>Desarrollo por Sprints:</strong>
+                            <ul>
+                                <li><strong>Sprint 1:</strong> Cimientos (Docker, autenticación/login).</li>
+                                <li><strong>Sprint 2:</strong> Núcleo administrativo (ABM de agentes y áreas) e integración inicial con IA.</li>
+                                <li><strong>Sprint 3:</strong> Lógica de negocio (Guardias, Asistencia) y módulo de Compensaciones.</li>
+                                <li><strong>Sprint 4:</strong> Estabilización, módulo de Incidencias y hardening (RBAC).</li>
+                            </ul>
+                        </li>
+                        <li><strong>Testeo y despliegue:</strong> Pruebas de integración y despliegue en Railway.</li>
+                    </ul>
+                `
+            },
+            {
+                id: "dinamica",
+                title: "Dinámica y Herramientas",
+                icon: "🛠️",
+                content: `
+                    <p>Gestión del proyecto y herramientas utilizadas:</p>
+                    <ul>
+                        <li><strong>Validación con el cliente:</strong> Decisiones funcionales validadas para evitar retrabajo.</li>
+                        <li><strong>Documentación asistida por IA:</strong> Uso de GitHub Copilot para generar resúmenes de sprint y documentación técnica.</li>
+                        <li><strong>Gestión Kanban:</strong> Tablero Trello para seguimiento de tareas (Pendiente / En Progreso / Terminado).</li>
+                        <li><strong>Comunicación rápida:</strong> Canal operativo en WhatsApp para decisiones inmediatas durante la codificación.</li>
+                    </ul>
+                    <div style="margin-top:20px; text-align:center;">
+                        <img src="trello.png" alt="trello kanban" style="width:180px; height:auto; max-width:80%; border:3px solid var(--secondary-color); border-radius:10px; box-shadow:0 0 20px rgba(77, 238, 234, 0.3);">
+                    </div>
+                `
+            }
+        ]
 },
     {
         id: 6,
