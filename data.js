@@ -11,7 +11,7 @@ const slides = [
         {
             id: "estrategia",
             title: "Estrategia Híbrida",
-            icon: "uD83D\uDCCA", // Icono de Gráfico
+            icon: "📊", // Icono de Gráfico
             content: `
                 <p>Equilibrio entre rigor académico y flexibilidad de desarrollo.</p>
                 <ul>
@@ -24,7 +24,7 @@ const slides = [
         {
             id: "evolucion",
             title: "Evolución (Sprints)",
-            icon: "uD83D\uDD04", // Icono de ciclo/repetición
+            icon: "🔄", // Icono de ciclo/repetición
             content: `
                 <p>Cronología de maduración técnica y funcional:</p>
                 <ul>
@@ -37,7 +37,7 @@ const slides = [
         {
             id: "dinamica",
             title: "Dinámica y Herramientas",
-            icon: "uD83D\uDEE0\uFE0F", // Icono de herramientas
+            icon: "🛠️", // Icono de herramientas
             content: `
                 <p>Organización de equipo de alto rendimiento:</p>
                 <ul>

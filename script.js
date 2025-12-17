@@ -329,28 +329,8 @@ function createOverlay(sourceElement, data, isHero) {
     // DETECCIÓN GEOMÉTRICA PARA EL NÚCLEO (CÍRCULO)
     // Si es Hero, el div es cuadrado pero se ve redondo.
     // Si clickean en las esquinas (fuera del radio), debe cerrarse.
-    if (isHero) {
-        clone.addEventListener('click', (e) => {
-            // Coordenadas del click relativas al centro del modal
-            const modalRect = clone.getBoundingClientRect();
-            const centerX = modalRect.left + modalRect.width / 2;
-            const centerY = modalRect.top + modalRect.height / 2;
-
-            const clickX = e.clientX;
-            const clickY = e.clientY;
-
-            // Distancia del click al centro
-            const distance = Math.sqrt(Math.pow(clickX - centerX, 2) + Math.pow(clickY - centerY, 2));
-
-            // Radio del círculo (usamos el menor lado por seguridad, aunque debería ser cuadrado)
-            const radius = modalRect.width / 2;
-
-            // Si la distancia es mayor al radio, clickearon en la "esquina" invisible
-            if (distance > radius) {
-                closeOverlay(overlay, clone, rect, isHero);
-            }
-        });
-    }
+    // Nota: Se removió el cierre por detección geométrica del núcleo circular
+    // porque podía interferir con interacciones internas (tabs/botones).
 
     // Si tiene tabs, agregar funcionalidad
     if (data.tabs && data.tabs.length > 0) {
