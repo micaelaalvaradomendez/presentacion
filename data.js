@@ -235,20 +235,6 @@ const heroData = {
     subtitle: "Gestión Integral de Guardias y Asistencia",
     tabs: [
         {
-            id: "resumen",
-            title: "Resumen",
-            icon: "📝",
-            content: `
-                <p><strong>Resumen ejecutivo:</strong></p>
-                <ul>
-                    <li><strong>Impacto:</strong> GIGA moderniza la gestión de guardias, aumentando integridad financiera, transparencia y acceso a la información.</li>
-                    <li><strong>Problema actual:</strong> Dependencia de planillas Excel/VBA con procesos manuales, silos y errores operativos.</li>
-                    <li><strong>Solución propuesta:</strong> Plataforma web contenerizada con reglas de negocio automatizadas, RBAC y auditoría completa.</li>
-                    <li><strong>Beneficios:</strong> Reducción de errores, trazabilidad de cambios, y empoderamiento del personal mediante dashboards y consulta normativa con IA.</li>
-                </ul>
-            `
-        },
-        {
             id: "importancia",
             title: "Importancia",
             icon: "🚨",
@@ -276,15 +262,12 @@ const heroData = {
                 <div style="display:flex; justify-content:center; gap:20px; margin-top:20px; flex-wrap:wrap;">
                     <figure style="margin:0; text-align:center;">
                         <img src="actuial1.jpeg" alt="Captura sistema actual 1" style="width:220px; height:auto; border-radius:8px; border:2px solid rgba(255,255,255,0.06);">
-                        <figcaption style="color:#aaa; font-size:0.9rem; margin-top:8px;">Captura 1</figcaption>
                     </figure>
                     <figure style="margin:0; text-align:center;">
                         <img src="actuial2.jpeg" alt="Captura sistema actual 2" style="width:220px; height:auto; border-radius:8px; border:2px solid rgba(255,255,255,0.06);">
-                        <figcaption style="color:#aaa; font-size:0.9rem; margin-top:8px;">Captura 2</figcaption>
                     </figure>
                     <figure style="margin:0; text-align:center;">
                         <img src="actuial3.jpeg" alt="Captura sistema actual 3" style="width:220px; height:auto; border-radius:8px; border:2px solid rgba(255,255,255,0.06);">
-                        <figcaption style="color:#aaa; font-size:0.9rem; margin-top:8px;">Captura 3</figcaption>
                     </figure>
                 </div>
             `

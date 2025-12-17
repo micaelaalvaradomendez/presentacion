@@ -353,6 +353,52 @@ function createOverlay(sourceElement, data, isHero) {
             });
         });
     }
+
+    // Agregar funcionalidad de lightbox para imágenes dentro del modal/clon
+    const modalImages = clone.querySelectorAll('img');
+    if (modalImages.length > 0) {
+        modalImages.forEach(img => {
+            img.style.cursor = 'zoom-in';
+            img.addEventListener('click', (e) => {
+                e.stopPropagation();
+
+                // Crear backdrop del lightbox
+                const lb = document.createElement('div');
+                lb.className = 'image-lightbox';
+
+                // Imagen grande
+                const large = document.createElement('img');
+                large.src = img.src;
+                large.alt = img.alt || '';
+
+                // Botón cerrar
+                const closeImg = document.createElement('div');
+                closeImg.className = 'close-img';
+                closeImg.innerHTML = '&times;';
+
+                lb.appendChild(large);
+                lb.appendChild(closeImg);
+                document.body.appendChild(lb);
+
+                // Función de cierre
+                const removeLightbox = () => {
+                    if (lb && lb.parentNode) lb.parentNode.removeChild(lb);
+                    document.removeEventListener('keydown', escHandler);
+                };
+
+                // Cerrar al hacer click en backdrop o en el botón
+                lb.addEventListener('click', (ev) => {
+                    if (ev.target === lb || ev.target === closeImg) removeLightbox();
+                });
+
+                // Cerrar con ESC
+                function escHandler(ev) {
+                    if (ev.key === 'Escape') removeLightbox();
+                }
+                document.addEventListener('keydown', escHandler);
+            });
+        });
+    }
 }
 
 function closeOverlay(overlayElement, cloneElement, originalRect, isHero) {
