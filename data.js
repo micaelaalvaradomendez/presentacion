@@ -120,14 +120,52 @@ const slides = [
         id: 7,
         title: "Inteligencia Artificial",
         icon: "🧠",
-        content: `
-            <p>Integración de Chatbot para consultas del Convenio Colectivo.</p>
-            <ul>
-                <li><strong>Motor:</strong> n8n (Orquestador de flujos).</li>
-                <li><strong>Almacenamiento:</strong> MinIO (Object Storage) para los PDFs.</li>
-                <li><strong>Modelo:</strong> Gemini Flash 2.5 con "Corpus Cerrado" para evitar alucinaciones.</li>
-            </ul>
-        `
+        tabs: [
+            {
+                id: "arquitectura",
+                title: "Arquitectura RAG",
+                icon: "🔄",
+                content: `
+                    <p><strong>Flujo de integración con IA (módulo Convenio):</strong></p>
+                    <ul>
+                        <li><strong>1. Solicitud:</strong> Usuario consulta en lenguaje natural desde SvelteKit → Nginx Gateway.</li>
+                        <li><strong>2. Orquestación (n8n):</strong> Nginx deriva tráfico a n8n vía Webhook, iniciando un workflow automatizado.</li>
+                        <li><strong>3. Recuperación de Contexto (RAG):</strong> n8n conecta a MinIO (S3-compatible), descarga PDF del Convenio Colectivo y extrae texto plano.</li>
+                        <li><strong>4. Generación (Gemini):</strong> n8n construye prompt enriquecido (pregunta + texto PDF) y lo envía a Google Gemini con instrucciones de Grounding (responder solo según el documento).</li>
+                        <li><strong>5. Entrega:</strong> Respuesta formateada en JSON vuelve al Frontend en tiempo real.</li>
+                    </ul>
+                    <p><strong>Beneficios:</strong> Desacople entre lógica de negocio e IA, cambio de documento sin tocar código.</p>
+                `
+            },
+            {
+                id: "optimizacion",
+                title: "Optimización con IA",
+                icon: "⚡",
+                content: `
+                    <p><strong>GitHub Copilot como auditor de calidad (Sprint 4):</strong></p>
+                    <ul>
+                        <li><strong>Análisis estático:</strong> Detección de antipatrones que degradaban rendimiento.</li>
+                        <li><strong>Caso 1 (Layout Thrashing):</strong> Evento <code>mousemove</code> en panel admin forzaba recálculo de posición de todas las tarjetas en cada píxel → Solución: <code>requestAnimationFrame</code> limitando cálculos al elemento activo.</li>
+                        <li><strong>Caso 2 (Peticiones redundantes):</strong> Menú principal ejecutaba <code>checkSession</code> en cada navegación → Solución: lógica de bandera + memoización CSS, reduciendo carga CPU en móviles.</li>
+                    </ul>
+                    <p><strong>Resultado:</strong> Mejora significativa de rendimiento en dispositivos de gama media.</p>
+                `
+            },
+            {
+                id: "seguridad",
+                title: "Aprendizaje vs Seguridad",
+                icon: "🔒",
+                content: `
+                    <p><strong>Decisión estratégica a futuro:</strong></p>
+                    <ul>
+                        <li><strong>Valor pedagógico:</strong> n8n permitió aprender orquestación de workflows y servicios, habilidad demandada en la industria.</li>
+                        <li><strong>Riesgo identificado:</strong> Inyección de prompts indirecta / Stored XSS (OWASP Top 10 for LLMs) — atacante podría "envenenar" contexto para manipular al LLM y generar código JavaScript malicioso.</li>
+                        <li><strong>Complejidad:</strong> Sanitización perfecta de respuestas generativas es extremadamente difícil de garantizar.</li>
+                        <li><strong>Conclusión:</strong> Se priorizó seguridad e integridad de datos financieros sobre innovación del chatbot en producción crítica → refactorización o eliminación a futuro.</li>
+                    </ul>
+                `
+            }
+        ]
     },
     {
         id: 8,
