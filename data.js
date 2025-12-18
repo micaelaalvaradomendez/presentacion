@@ -258,30 +258,65 @@ const slides = [
         ]
     },
     {
-        id: 11,
-        title: "Escalabilidad",
-        icon: "🌍",
-        content: `
-            <p>GIGA trasciende a Protección Civil. Su arquitectura abstracta permite gestión de turnos en:</p>
-            <ul>
-                <li><strong>Salud:</strong> Guardias médicas y cronogramas hospitalarios.</li>
-                <li><strong>Industria:</strong> Turnos rotativos en fábricas 24/7.</li>
-                <li><strong>Seguridad:</strong> Despliegue territorial (Policía/Bomberos).</li>
-            </ul>
-        `
-    },
-    {
         id: 12,
         title: "Futuro",
         icon: "🔮",
-        content: `
-            <p>Roadmap de evolución tecnológica (GIGA 2.0):</p>
-            <ul>
-                <li><strong>Biometría Real (WebAuthn):</strong> Uso de huella/rostro del celular para validar identidad física.</li>
-                <li><strong>Geofencing:</strong> Validación de ubicación GPS para guardias de campo.</li>
-                <li><strong>Modo Offline (PWA):</strong> Operatividad sin conexión para zonas de emergencia.</li>
-            </ul>
-        `
+        tabs: [
+            {
+                id: "escalabilidad",
+                title: "Escalabilidad Modular",
+                icon: "🔧",
+                content: `
+                    <p><strong>GIGA como framework adaptable:</strong></p>
+                    <ul>
+                        <li><strong>Diseño abstracto:</strong> Lógica de "Guardias" y "Asistencias" separada de reglas de negocio (cálculo de Plus encapsulado en funciones DB y backend Python).</li>
+                        <li><strong>Aplicabilidad:</strong> Exportable a hospitales (guardias médicas), empresas de seguridad (rotación de puestos), industria (turnos 24/7) con modificaciones leves en parámetros.</li>
+                        <li><strong>Modularidad "Hot-Swap":</strong> Arquitectura Docker permite agregar/eliminar servicios sin downtime (probado en producción: módulo Incidencias y refactorización de Licencias en Railway).</li>
+                    </ul>
+                `
+            },
+            {
+                id: "movil",
+                title: "App Nativa y Anti-Fraude",
+                icon: "📱",
+                content: `
+                    <p><strong>Siguiente salto: aplicación móvil iOS/Android.</strong></p>
+                    <ul>
+                        <li><strong>Sistema QR Dinámico (Tokenizado):</strong>
+                            <ul>
+                                <li>Pantalla en entrada de institución muestra QR único temporal (tipo TOTP) que cambia cada 30 seg.</li>
+                                <li>Agente escanea con App GIGA en su celular registrado.</li>
+                                <li>Anti-Fraude: garantiza presencia física (ver QR) + uso de dispositivo personal (nadie puede marcar por otro enviando foto, QR expira).</li>
+                            </ul>
+                        </li>
+                    </ul>
+                `
+            },
+            {
+                id: "integraciones",
+                title: "Integraciones y Biometría",
+                icon: "🔐",
+                content: `
+                    <p><strong>Investigación I+D para escalabilidad gubernamental:</strong></p>
+                    <ul>
+                        <li><strong>Integración AFIP/GDE:</strong>
+                            <ul>
+                                <li>Certificado Digital X.509 y protocolo WSAA (Ticket de Acceso).</li>
+                                <li>Validación de estructura BD contra esquemas XML oficiales (estándar SOAP) para garantizar validez legal.</li>
+                            </ul>
+                        </li>
+                        <li><strong>Biometría nativa (Huella/Rostro):</strong>
+                            <ul>
+                                <li>APIs <code>BiometricPrompt</code> (Android) / <code>LocalAuthentication</code> (iOS).</li>
+                                <li>App no guarda huella, consulta al OS del celular: "¿Es el dueño del teléfono?"</li>
+                                <li>Implementación: Keystore/Keychain genera llave criptográfica única → firma digital de marcación → backend verifica firma del dispositivo confiable.</li>
+                                <li>Reutiliza seguridad de grado militar de smartphones sin costo extra.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                `
+            }
+        ]
     }
 ];
 
