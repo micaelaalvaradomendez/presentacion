@@ -233,14 +233,51 @@ const slides = [
         id: 9,
         title: "Aprendizajes",
         icon: "🎓",
-        content: `
-            <ul>
-                <li>Gestión de deuda técnica y refactorización.</li>
-                <li>Despliegue real en nube (CI/CD).</li>
-                <li>Importancia de "Database First" en sistemas complejos.</li>
-                <li>Seguridad ofensiva y defensiva (RBAC).</li>
-            </ul>
-        `
+        tabs: [
+            {
+                id: "analista",
+                title: "Del Código al Modelo",
+                icon: "🧠",
+                content: `
+                    <p><strong>La visión del analista:</strong></p>
+                    <ul>
+                        <li><strong>Lección principal:</strong> Un buen software nace de entender profundamente el negocio, no de teclear rápido.</li>
+                        <li><strong>Aplicación de Conway:</strong> Aprendimos a no "programar la burocracia" — nuestra responsabilidad es cuestionar procesos, no solo automatizarlos.</li>
+                        <li><strong>Abstracción:</strong> La robustez se logra con diseño de datos sólido (Database First), no con parches en el código. Modelar reglas de negocio de forma agnóstica permite escalabilidad más allá del dominio original.</li>
+                        <li><strong>Transformación:</strong> De estudiantes que tiran código a analistas que resuelven problemas.</li>
+                    </ul>
+                `
+            },
+            {
+                id: "tecnica",
+                title: "Madurez Técnica",
+                icon: "⚙️",
+                content: `
+                    <p><strong>Salir de la zona de confort académica:</strong></p>
+                    <ul>
+                        <li><strong>Orquestación vs. programación:</strong> Diferencia entre hacer "una página web" y construir una arquitectura de software (Docker, Nginx, microservicios = ecosistema vivo de partes interconectadas).</li>
+                        <li><strong>Infraestructura y despliegue:</strong> Aprendizaje sobre redes, volúmenes persistentes, CI/CD y debugging en producción real.</li>
+                        <li><strong>Responsabilidad tecnológica:</strong> No deslumbrarse por "moda" (hype de IA) si compromete seguridad. Priorizar integridad del sistema sobre innovación superficial.</li>
+                        <li><strong>Gestión de deuda técnica:</strong> Refactorización planificada, importancia de Database First, seguridad RBAC.</li>
+                    </ul>
+                `
+            },
+            {
+                id: "humano",
+                title: "Crecimiento Humano",
+                icon: "🤝",
+                content: `
+                    <p><strong>Soft skills y gestión de equipos:</strong></p>
+                    <ul>
+                        <li><strong>Profesionalismo y amistad:</strong> Integración de nuevos compañeros obligó a profesionalizar interacciones — separar lo personal de lo académico para tomar decisiones objetivas.</li>
+                        <li><strong>Empatía activa:</strong> Equipo de alto rendimiento no es el que nunca falla, sino el que se cubre las espaldas. Cuando un compañero no podía cumplir, el resto asumía carga sin reproches.</li>
+                        <li><strong>Superación de expectativas:</strong> No solo aprobar, sino entregar producto de nivel profesional. Autoexigencia para superar límites y aprender tecnologías desde cero en tiempos récord.</li>
+                        <li><strong>Contexto difícil:</strong> Proyecto desarrollado en contexto personal/académico complejo — resiliencia y colaboración humana probadas.</li>
+                    </ul>
+                    <p><strong>Conclusión:</strong> GIGA es la prueba tangible de nuestra capacidad para transformar problemas humanos en soluciones tecnológicas eficientes, seguras y escalables.</p>
+                `
+            }
+        ]
     },
     {
         id: 10,
