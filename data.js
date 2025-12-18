@@ -67,41 +67,50 @@ const slides = [
         icon: "💻",
         tabs: [
             {
-                id: "backend",
-                title: "Backend",
-                icon: "🐍",
+                id: "stack",
+                title: "Stack Tecnológico",
+                icon: "🔧",
                 content: `
-                    <p>Django REST Framework con PostgreSQL</p>
+                    <p><strong>Arquitectura de microservicios para escalabilidad y mantenibilidad:</strong></p>
                     <ul>
-                        <li>API RESTful</li>
-                        <li>Autenticación JWT</li>
-                        <li>ORM Database First</li>
+                        <li><strong>Infraestructura:</strong> Docker + Docker Compose (contenerización multiplataforma), Nginx como Gateway y Reverse Proxy (SSL, enrutamiento, CORS).</li>
+                        <li><strong>Backend:</strong> Python + Django REST Framework (API RESTful, autenticación, reglas de negocio), PostgreSQL 16 Alpine (Database First para integridad referencial).</li>
+                        <li><strong>Frontend:</strong> SvelteKit + Vite (sin Virtual DOM, menor bundle size, optimizado para móviles de gama media).</li>
+                        <li><strong>Servicios auxiliares:</strong> MinIO (S3-compatible para PDFs), N8N (orquestación low-code de flujos e IA), Google Gemini API (procesamiento de consultas del Convenio Colectivo).</li>
+                        <li><strong>Producción:</strong> Railway (PaaS con soporte Docker Compose y volúmenes persistentes).</li>
                     </ul>
                 `
             },
             {
-                id: "frontend",
-                title: "Frontend",
-                icon: "⚡",
+                id: "desafio",
+                title: "Desafío de Aprendizaje",
+                icon: "🎯",
                 content: `
-                    <p>SvelteKit con TypeScript</p>
+                    <p><strong>Decisión de arquitectura como aprendizaje intencional:</strong></p>
                     <ul>
-                        <li>SSR/SPA Híbrido</li>
-                        <li>Reactivo</li>
-                        <li>Optimizado</li>
+                        <li>Aunque el proyecto permitía un <strong>monolito tradicional</strong>, elegimos <strong>microservicios contenerizados</strong> como desafío personal y educativo.</li>
+                        <li>Objetivo: dominar estándares de la industria moderna (Docker, orquestación, redes internas, variables de entorno).</li>
+                        <li>Beneficios: desarrollo de habilidades Full Stack, entorno portable y agnóstico (funciona idénticamente en cualquier OS: Windows/Linux/MacOS).</li>
+                        <li>Resultado: comprensión profunda de cómo interactúan componentes distribuidos, preparación para entornos productivos complejos.</li>
                     </ul>
                 `
             },
             {
-                id: "infraestructura",
-                title: "Infraestructura",
-                icon: "🐳",
+                id: "despliegue",
+                title: "Despliegue en Nube",
+                icon: "☁️",
                 content: `
-                    <p>Docker + Railway</p>
+                    <p><strong>Flujo de conexión Docker (desarrollo):</strong></p>
                     <ul>
-                        <li>Microservicios</li>
-                        <li>CI/CD Automático</li>
-                        <li>NGINX Gateway</li>
+                        <li><strong>Red privada:</strong> <code>giga-network</code> aisla servicios del exterior.</li>
+                        <li><strong>Gateway único:</strong> Todo el tráfico entra por puerto 80 (Nginx), que enruta a Frontend (puerto 3000), Backend (8000) y N8N según la ruta.</li>
+                        <li><strong>Comunicación interna:</strong> Contenedores usan DNS de Docker (ej. <code>postgres:5432</code>, <code>minio:9000</code>) sin exposición pública.</li>
+                    </ul>
+                    <p><strong>Selección de plataforma productiva:</strong></p>
+                    <ul>
+                        <li><strong>Oracle Cloud:</strong> Descartado (alta complejidad de configuración VM).</li>
+                        <li><strong>Render:</strong> Descartado (sin volúmenes persistentes → pérdida de configuraciones N8N/MinIO).</li>
+                        <li><strong>Railway (elegido):</strong> Soporte nativo Docker Compose, volúmenes persistentes, migración transparente (un solo comando), gestión de variables de entorno y logs en tiempo real.</li>
                     </ul>
                 `
             }
