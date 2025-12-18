@@ -171,14 +171,63 @@ const slides = [
         id: 8,
         title: "Desafíos",
         icon: "🔥",
-        content: `
-            <p>Problemas críticos resueltos durante el desarrollo:</p>
-            <ul>
-                <li><strong>Infraestructura:</strong> Render no permitía persistencia de archivos (n8n se borraba). Migramos a <strong>Railway</strong>.</li>
-                <li><strong>Seguridad:</strong> Detección de fraude (Marcación por otros). Implementamos validación cruzada de sesión e IP.</li>
-                <li><strong>CORS:</strong> Problemas de cookies entre Front y Back en dominios distintos.</li>
-            </ul>
-        `
+        tabs: [
+            {
+                id: "conway",
+                title: "Ley de Conway",
+                icon: "🧩",
+                content: `
+                    <p><strong>Marco teórico sociotécnico:</strong></p>
+                    <ul>
+                        <li><strong>Definición:</strong> "Las organizaciones que diseñan sistemas producen diseños que replican sus propias estructuras de comunicación" (Melvin Conway, 1967).</li>
+                        <li><strong>Implicación:</strong> El software no es solo código, es un artefacto sociotécnico. Si el equipo/cliente tiene procesos fragmentados, el sistema heredará esas fallas arquitectónicas.</li>
+                        <li><strong>Desafío GIGA:</strong> Evitar modelar el "caos" preexistente del sistema manual en Excel en la nueva arquitectura.</li>
+                    </ul>
+                `
+            },
+            {
+                id: "proceso",
+                title: "Trampa del Proceso Heredado",
+                icon: "⚠️",
+                content: `
+                    <p><strong>Desafío del doble rol (cliente/desarrollador):</strong></p>
+                    <ul>
+                        <li><strong>Estrategia inicial:</strong> Aislar a integrante con rol dual como "solo cliente" en relevamiento para evitar contaminar solución técnica con vicios del sistema actual.</li>
+                        <li><strong>Problema:</strong> Caímos en modelar el problema con sus errores (digitalizamos burocracia en lugar de optimizarla).</li>
+                        <li><strong>Solución:</strong> Limpieza profunda de casos de uso para abstraernos del proceso manual y diseñar sistema lógico puro.</li>
+                    </ul>
+                    <p><strong>Refactorización Code First → Database First:</strong></p>
+                    <ul>
+                        <li><strong>Problema:</strong> Enfoque inicial Code First (Django) generó lógica compleja innecesaria y parches para excepciones heredadas del proceso manual.</li>
+                        <li><strong>Solución estructural:</strong> Reestructurar a Database First (diseñar BD en PostgreSQL con reglas de integridad estrictas primero), eliminando "grasa" del proceso anterior y reduciendo deuda técnica.</li>
+                    </ul>
+                `
+            },
+            {
+                id: "tecnicos",
+                title: "Desafíos Técnicos",
+                icon: "🛠️",
+                content: `
+                    <p><strong>Evolución del equipo y modularidad:</strong></p>
+                    <ul>
+                        <li>Integración plena de compañera cliente/dev permitió iteración más rápida.</li>
+                        <li>Nuevos módulos (Compensaciones, Incidencias) modelados de manera óptima y modular, no como parches.</li>
+                        <li>Resultado: aplicación flexible, desacoplada y adaptable a otros ámbitos.</li>
+                    </ul>
+                    <p><strong>Barrera Docker (comunicación entre contenedores):</strong></p>
+                    <ul>
+                        <li><strong>Desafío:</strong> Configuración correcta para que servicios (Frontend, Backend, BD, N8N) se comuniquen en red interna sin exposición innecesaria.</li>
+                        <li><strong>Superación:</strong> Reestructurar <code>docker-compose</code> para pasar de monolito a servicios aislados con volúmenes persistentes, aprendiendo sobre redes virtuales y gateway (Nginx).</li>
+                    </ul>
+                    <p><strong>Otros desafíos resueltos:</strong></p>
+                    <ul>
+                        <li><strong>Infraestructura:</strong> Render sin persistencia (n8n se borraba) → migración a Railway.</li>
+                        <li><strong>Seguridad:</strong> Fraude en marcación → validación cruzada de sesión e IP.</li>
+                        <li><strong>CORS:</strong> Problemas de cookies entre dominios → configuración de Nginx.</li>
+                    </ul>
+                `
+            }
+        ]
     },
     {
         id: 9,
